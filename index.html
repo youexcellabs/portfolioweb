@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creative Agency — Portfolio</title>
+  <meta name="description" content="Creative agency portfolio featuring animated hero, case studies, services, team, testimonials, awards, and a quote form." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'ui-sans-serif', 'Arial', 'sans-serif'],
+          },
+          colors: {
+            // Primary and Secondary colors intentionally left undefined as per requirement
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.05)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.98)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            gradient: {
+              '0%, 100%': { backgroundPosition: '0% 50%' },
+              '50%': { backgroundPosition: '100% 50%' },
+            },
+            fadeUp: {
+              '0%': { opacity: 0, transform: 'translateY(18px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            },
+          },
+          animation: {
+            float: 'float 8s ease-in-out infinite',
+            blob: 'blob 15s ease-in-out infinite',
+            gradient: 'gradient 15s ease infinite',
+            fadeUp: 'fadeUp 0.8s ease-out both',
+          },
+        },
+      },
+      darkMode: 'class',
+    };
+  </script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body class="antialiased bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <!-- Top progress bar -->
+  <div id="progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-500 to-violet-500 z-[60]" style="width:0%"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur border-b border-slate-200/60 dark:border-slate-800/60 bg-white/70 dark:bg-slate-950/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-3">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-violet-600 text-white shadow-lg shadow-sky-500/20">
+            <i data-feather="layers"></i>
+          </span>
+          <span class="font-bold text-lg tracking-tight">
+            <span class="text-sky-600">Nova</span> Creative
+          </span>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#about" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">About</a>
+          <a href="#services" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Services</a>
+          <a href="#projects" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Work</a>
+          <a href="#team" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Team</a>
+          <a href="#testimonials" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Testimonials</a>
+          <a href="#awards" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Awards</a>
+          <a href="#quote" class="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition">Contact</a>
+          <button id="themeToggle" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Toggle theme" aria-label="Toggle theme">
+            <i data-feather="moon" class="h-5 w-5 dark:hidden"></i>
+            <i data-feather="sun" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+        </nav>
+
+        <div class="md:hidden flex items-center gap-2">
+          <button id="themeToggleMobile" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Toggle theme" aria-label="Toggle theme">
+            <i data-feather="moon" class="h-5 w-5 dark:hidden"></i>
+            <i data-feather="sun" class="h-5 w-5 hidden dark:block"></i>
+          </button>
+          <button id="mobileMenuBtn" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" title="Open menu" aria-label="Open menu">
+            <i data-feather="menu" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200/60 dark:border-slate-800/60 bg-white/90 dark:bg-slate-950/90 backdrop-blur">
+      <div class="max-w-7xl mx-auto px-4 py-3 space-y-1">
+        <a href="#about" class="block py-2 text-slate-700 dark:text-slate-300">About</a>
+        <a href="#services" class="block py-2 text-slate-700 dark:text-slate-300">Services</a>
+        <a href="#projects" class="block py-2 text-slate-700 dark:text-slate-300">Work</a>
+        <a href="#team" class="block py-2 text-slate-700 dark:text-slate-300">Team</a>
+        <a href="#testimonials" class="block py-2 text-slate-700 dark:text-slate-300">Testimonials</a>
+        <a href="#awards" class="block py-2 text-slate-700 dark:text-slate-300">Awards</a>
+        <a href="#quote" class="block py-2 text-slate-700 dark:text-slate-300">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="about" class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <div class="absolute -top-24 -right-16 h-72 w-72 rounded-full bg-sky-400/30 blur-3xl animate-blob"></div>
+      <div class="absolute -bottom-24 -left-16 h-72 w-72 rounded-full bg-violet-500/30 blur-3xl animate-blob"></div>
+      <div class="absolute inset-0 opacity-[0.07] dark:opacity-[0.06] bg-[length:200%_200%] bg-gradient-to-br from-sky-500 via-violet-500 to-sky-500 animate-gradient"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-32">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 px-3 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 shadow-sm">
+            <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Available for new projects in Q4
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+            We craft bold brands and delightful digital experiences.
+          </h1>
+          <p class="text-lg text-slate-600 dark:text-slate-300 max-w-prose">
+            We’re a creative studio blending strategy, design, and code to help ambitious brands grow. From concept to launch, we turn ideas into measurable results.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#projects" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 transition shadow-lg shadow-slate-900/10">
+              <i data-feather="play-circle" class="h-5 w-5"></i>
+              View Case Studies
+            </a>
+            <a href="#quote" class="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition">
+              <i data-feather="edit-3" class="h-5 w-5"></i>
+              Get a Quote
+            </a>
+          </div>
+          <div class="flex items-center gap-8 pt-4">
+            <div>
+              <div class="text-2xl font-bold">120+</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Projects delivered</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold">24</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Team members</div>
+            </div>
+            <div>
+              <div class="text-2xl font-bold">6</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Years young</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="relative rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 backdrop-blur p-6 shadow-xl">
+            <div class="grid grid-cols-3 gap-3">
+              <div class="h-28 rounded-xl bg-gradient-to-br from-sky-400/30 to-sky-600/30 animate-float"></div>
+              <div class="h-28 rounded-xl bg-gradient-to-br from-violet-400/30 to-violet-600/30 animate-float" style="animation-delay: 1s;"></div>
+              <div class="h-28 rounded-xl bg-gradient-to-br from-emerald-400/30 to-emerald-600/30 animate-float" style="animation-delay: 2s;"></div>
+              <div class="h-28 rounded-xl bg-gradient-to-br from-amber-400/30 to-amber-600/30 animate-float" style="animation-delay: .5s;"></div>
+              <div class="h-28 rounded-xl bg-gradient-to-br from-rose-400/30 to-rose-600/30 animate-float" style="animation-delay: 1.5s;"></div>
+              <div class="h-28 rounded-xl bg-gradient-to-br from-indigo-400/30 to-indigo-600/30 animate-float" style="animation-delay: 2.5s;"></div>
+            </div>
+            <div class="absolute -bottom-6 -right-6 hidden sm:flex items-center gap-2 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 px-3 py-2 rounded-lg shadow-lg text-xs">
+              <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Live collaboration
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects with Case Studies -->
+  <section id="projects" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6 mb-8">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Featured Projects</h2>
+          <p class="text-slate-600 dark:text-slate-400">A selection of our favorite work and results.</p>
+        </div>
+        <a href="#quote" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800">
+          <i data-feather="plus" class="h-4 w-4"></i>
+          Start your project
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Project Card 1 -->
+        <article class="group relative rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1557800636-894a64c1696f?q=80&w=1600&auto=format&fit=crop" alt="Ecommerce redesign" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold">Aurora Store — Ecommerce Redesign</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Increased conversion by 34% with a frictionless checkout.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">UX</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">UI</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">A/B Testing</span>
+            </div>
+            <div class="mt-4">
+              <button class="case-study-btn inline-flex items-center gap-2 text-sm font-medium text-sky-600 hover:text-sky-700" data-case="case1">
+                <i data-feather="file-text" class="h-4 w-4"></i>
+                Read Case Study
+              </button>
+            </div>
+          </div>
+
+          <!-- Case Study Panel -->
+          <div id="case1" class="hidden fixed inset-0 z-50">
+            <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+            <div class="relative z-10 max-w-3xl mx-auto my-10 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-y-auto max-h-[90vh]">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-xl font-bold">Aurora Store — Case Study</h3>
+                <button class="case-close inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close">
+                  <i data-feather="x" class="h-5 w-5"></i>
+                </button>
+              </div>
+              <div class="prose dark:prose-invert mt-4 max-w-none">
+                <p><strong>Challenge:</strong> High cart abandonment during checkout.</p>
+                <ul>
+                  <li>Simplified form fields and added progress indicators.</li>
+                  <li>Introduced express checkout options (Apple/Google Pay).</li>
+                  <li>Optimized mobile flows for thumb reachability.</li>
+                </ul>
+                <p><strong>Results:</strong> +34% conversion, -22% support tickets, +$1.2M revenue in 3 months.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 2 -->
+        <article class="group relative rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1600&auto=format&fit=crop" alt="SaaS Dashboard" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold">Pulse — SaaS Dashboard</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Design system that accelerated delivery by 2x.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">Design System</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">Accessibility</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">React</span>
+            </div>
+            <div class="mt-4">
+              <button class="case-study-btn inline-flex items-center gap-2 text-sm font-medium text-sky-600 hover:text-sky-700" data-case="case2">
+                <i data-feather="file-text" class="h-4 w-4"></i>
+                Read Case Study
+              </button>
+            </div>
+          </div>
+
+          <div id="case2" class="hidden fixed inset-0 z-50">
+            <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+            <div class="relative z-10 max-w-3xl mx-auto my-10 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-y-auto max-h-[90vh]">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-xl font-bold">Pulse — Case Study</h3>
+                <button class="case-close inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close">
+                  <i data-feather="x" class="h-5 w-5"></i>
+                </button>
+              </div>
+              <div class="prose dark:prose-invert mt-4 max-w-none">
+                <p><strong>Approach:</strong> We created a component library aligned to WCAG AAA standards.</p>
+                <ul>
+                  <li>Unified tokens for spacing, color, typography.</li>
+                  <li>Automated visual regression tests.</li>
+                </ul>
+                <p><strong>Impact:</strong> 2x faster delivery, -35% bugs on release.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 3 -->
+        <article class="group relative rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
+          <div class="aspect-[16/10] overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?q=80&w=1600&auto=format&fit=crop" alt="Brand Campaign" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+          </div>
+          <div class="p-5">
+            <h3 class="text-lg font-semibold">Strata — Brand Launch</h3>
+            <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Messaging and identity that opened doors.</p>
+            <div class="flex flex-wrap gap-2 mt-4">
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">Brand</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">Campaign</span>
+              <span class="px-2 py-1 text-xs rounded-md bg-slate-100 dark:bg-slate-800">Motion</span>
+            </div>
+            <div class="mt-4">
+              <button class="case-study-btn inline-flex items-center gap-2 text-sm font-medium text-sky-600 hover:text-sky-700" data-case="case3">
+                <i data-feather="file-text" class="h-4 w-4"></i>
+                Read Case Study
+              </button>
+            </div>
+          </div>
+
+          <div id="case3" class="hidden fixed inset-0 z-50">
+            <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm"></div>
+            <div class="relative z-10 max-w-3xl mx-auto my-10 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl overflow-y-auto max-h-[90vh]">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="text-xl font-bold">Strata — Case Study</h3>
+                <button class="case-close inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Close">
+                  <i data-feather="x" class="h-5 w-5"></i>
+                </button>
+              </div>
+              <div class="prose dark:prose-invert mt-4 max-w-none">
+                <p><strong>Outcome:</strong> Clear positioning and a bold, flexible identity system.</p>
+                <ul>
+                  <li>Modular toolkit for social and OOH.</li>
+                  <li>Launch kit with motion and content guidelines.</li>
+                </ul>
+                <p><strong>Result:</strong> 12 enterprise wins in first quarter.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-16 sm:py-20 bg-white/50 dark:bg-slate-900/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Services we provide</h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">Strategy, design, and engineering to ship memorable products.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="compass"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Brand Strategy</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Positioning, messaging, and visual identity foundations.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="smartphone"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Product Design</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">UX research, interface design, and design systems.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="code"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Web Development</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">High-performance websites and web apps.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="activity"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Growth & SEO</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Experimentation and technical SEO for sustainable growth.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="film"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Content & Motion</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Launch videos, micro-interactions, and motion systems.</p>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950">
+          <div class="h-10 w-10 rounded-lg bg-slate-900 text-white flex items-center justify-center">
+            <i data-feather="tool"></i>
+          </div>
+          <h3 class="mt-4 font-semibold">Support</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-400 mt-1">Maintenance, optimizations, and roadmap planning.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6 mb-8">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Team Members</h2>
+          <p class="text-slate-600 dark:text-slate-400">Meet the people behind the work.</p>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=400&auto=format&fit=crop" alt="Alex Doe" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Alex Doe</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Creative Director</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Sam Lee" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Sam Lee</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Product Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop" alt="Jordan Park" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Jordan Park</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Engineer</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1546525848-3ce03ca516f6?q=80&w=400&auto=format&fit=crop" alt="Riley Chen" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Riley Chen</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Growth Lead</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=400&auto=format&fit=crop" alt="Taylor Reed" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Taylor Reed</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Motion Designer</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=400&auto=format&fit=crop" alt="Morgan Yu" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Morgan Yu</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Producer</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1527980965255-9fc9d6d85ff9?q=80&w=400&auto=format&fit=crop" alt="Jamie Fox" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Jamie Fox</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">Researcher</div>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-5 bg-white dark:bg-slate-900">
+          <div class="flex items-center gap-4">
+            <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=400&auto=format&fit=crop" alt="Chris Voss" class="h-14 w-14 rounded-full object-cover" />
+            <div>
+              <div class="font-semibold">Chris Voss</div>
+              <div class="text-sm text-slate-600 dark:text-slate-400">DevOps</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Slider -->
+  <section id="testimonials" class="py-16 sm:py-20 bg-white/50 dark:bg-slate-900/50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between gap-6 mb-8">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Client Testimonials</h2>
+          <p class="text-slate-600 dark:text-slate-400">What our clients say about working with us.</p>
+        </div>
+        <div class="hidden md:flex items-center gap-2">
+          <button id="prevSlide" class="inline-flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" aria-label="Previous">
+            <i data-feather="chevron-left" class="h-5 w-5"></i>
+          </button>
+          <button id="nextSlide" class="inline-flex items-center justify-center h-10 w-10 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800" aria-label="Next">
+            <i data-feather="chevron-right" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
+        <div id="testimonialTrack" class="flex transition-transform duration-500 ease-out">
+          <div class="w-full flex-shrink-0 p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop" alt="Jordan from Northstar" class="h-14 w-14 rounded-full object-cover" />
+              <div>
+                <p class="text-lg font-medium">“Nova transformed our brand and product. The impact on our bottom line was immediate.”</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Jordan — Northstar</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex-shrink-0 p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop" alt="Priya from Flowly" class="h-14 w-14 rounded-full object-cover" />
+              <div>
+                <p class="text-lg font-medium">“They ship fast and care deeply. Our design system will scale us for years.”</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Priya — Flowly</p>
+              </div>
+            </div>
+          </div>
+          <div class="w-full flex-shrink-0 p-6 sm:p-8">
+            <div class="flex items-start gap-4">
+              <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=200&auto=format&fit=crop" alt="Mark from Helio" class="h-14 w-14 rounded-full object-cover" />
+              <div>
+                <p class="text-lg font-medium">“From strategy to execution, Nova is an extension of our team. Highly recommend.”</p>
+                <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Mark — Helio</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute inset-y-0 left-0 right-0 pointer-events-none flex items-center">
+          <div class="h-16 w-16 pointer-events-auto absolute left-2">
+            <button id="prevSlide2" class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center" aria-label="Previous">
+              <i data-feather="chevron-left" class="h-5 w-5"></i>
+            </button>
+          </div>
+          <div class="h-16 w-16 pointer-events-auto absolute right-2">
+            <button id="nextSlide2" class="h-10 w-10 rounded-full border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-center" aria-label="Next">
+              <i data-feather="chevron-right" class="h-5 w-5"></i>
+            </button>
+          </div>
+        </div>
+        <div class="flex justify-center gap-2 py-4">
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-slate-700" data-index="0" aria-label="Go to slide 1"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-slate-700" data-index="1" aria-label="Go to slide 2"></button>
+          <button class="dot h-2.5 w-2.5 rounded-full bg-slate-300 dark:bg-slate-700" data-index="2" aria-label="Go to slide 3"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Awards -->
+  <section id="awards" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Awards & Recognition</h2>
+        <p class="text-slate-600 dark:text-slate-400 mt-2">Proud to be recognized by our peers.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950 text-center">
+          <div class="text-sm text-slate-500">2025</div>
+          <div class="font-semibold mt-1">Awwwards Honorable Mention</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400">Aurora Store</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950 text-center">
+          <div class="text-sm text-slate-500">2024</div>
+          <div class="font-semibold mt-1">CSSDA Site of the Day</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400">Pulse</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950 text-center">
+          <div class="text-sm text-slate-500">2024</div>
+          <div class="font-semibold mt-1">Webby Honoree</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400">Strata</div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 p-6 bg-white dark:bg-slate-950 text-center">
+          <div class="text-sm text-slate-500">2023</div>
+          <div class="font-semibold mt-1">Red Dot: Best of Best</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400">Campaign Toolkit</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get a Quote -->
+  <section id="quote" class="py-16 sm:py-20 bg-white/50 dark:bg-slate-900/50 backdrop-blur">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 p-6 sm:p-8 shadow-xl">
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-bold tracking-tight">Get a Quote</h2>
+            <p class="text-slate-600 dark:text-slate-400 mt-2">Tell us about your project. We’ll get back to you within 1–2 business days.</p>
+            <div class="mt-6 space-y-3">
+              <div class="flex items-center gap-3">
+                <i data-feather="mail" class="h-5 w-5 text-slate-500"></i>
+                <span class="text-sm">hello@novacreative.studio</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i data-feather="map-pin" class="h-5 w-5 text-slate-500"></i>
+                <span class="text-sm">Remote • Worldwide</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <i data-feather="clock" class="h-5 w-5 text-slate-500"></i>
+                <span class="text-sm">Mon–Fri, 9am–6pm</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="quoteForm" class="space-y-4" novalidate>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="name">Name</label>
+                <input id="name" name="name" type="text" required class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="email">Email</label>
+                <input id="email" name="email" type="email" required class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="company">Company</label>
+                <input id="company" name="company" type="text" class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="projectType">Project Type</label>
+                <select id="projectType" name="projectType" class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white">
+                  <option value="brand">Brand</option>
+                  <option value="website">Website</option>
+                  <option value="app">App</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium mb-1" for="budget">Budget</label>
+                <select id="budget" name="budget" class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white">
+                  <option value="under10k">Under $10k</option>
+                  <option value="10-25k">$10k–$25k</option>
+                  <option value="25-50k">$25k–$50k</option>
+                  <option value="50kplus">$50k+</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1" for="deadline">Desired Start</label>
+                <input id="deadline" name="deadline" type="date" class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1" for="message">Project Details</label>
+              <textarea id="message" name="message" rows="4" required class="w-full rounded-lg border border-slate-300 dark:border-slate-800 bg-transparent px-3 py-2 focus:outline-none focus:ring-2 focus:ring-slate-900 dark:focus:ring-white"></textarea>
+            </div>
+
+            <div class="flex items-center justify-between">
+              <div class="text-xs text-slate-500">By submitting, you agree to our terms.</div>
+              <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-slate-900 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 transition">
+                <i data-feather="send" class="h-4 w-4"></i>
+                Send Request
+              </button>
+            </div>
+
+            <div id="formStatus" class="hidden mt-2 text-sm font-medium"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="text-sm text-slate-600 dark:text-slate-400">© <span id="year"></span> Nova Creative. All rights reserved.</div>
+        <div class="flex items-center gap-4">
+          <a href="#" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Twitter">
+            <i data-feather="twitter"></i>
+          </a>
+          <a href="#" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Dribbble">
+            <i data-feather="dribbble"></i>
+          </a>
+          <a href="#" class="inline-flex items-center justify-center h-10 w-10 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="LinkedIn">
+            <i data-feather="linkedin"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>feather.replace();</script>
+<script src="https://huggingface.co/deepsite/deepsite-badge.js"></script>
+</body>
+</html>

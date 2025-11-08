@@ -1,0 +1,58 @@
+/* Custom styles for better motion and subtle polish */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fancy selection */
+::selection {
+  background: rgba(56, 189, 248, 0.25); /* sky-400 @ 25% */
+}
+
+/* Dark mode prefers-color-scheme handler (fallback, JS also toggles) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+/* Subtle focus outline override for accessibility */
+:focus-visible {
+  outline: 2px solid #38bdf8; /* sky-400 */
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for WebKit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1; /* slate-300 */
+  border: 4px solid transparent;
+  border-radius: 9999px;
+  background-clip: content-box;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155; /* slate-700 */
+}
+
+/* Prose-like content */
+.prose :where(p):not(:where([class~="not-prose"] *)) {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: inherit;
+}
+.prose :where(ul):not(:where([class~="not-prose"] *)) {
+  list-style: disc;
+  margin-left: 1.25rem;
+}
